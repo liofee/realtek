@@ -1,0 +1,5 @@
+#!/bin/bash
+# 启动全局代理
+http_proxy=http://10.10.10.111:10809 https_proxy=http://10.10.10.111:10809 /usr/local/sbin/emhttp & 
+echo "export http_proxy=\"http://10.10.10.111:10809\"" >> /root/.bash_profile 
+echo "export https_proxy=\"http://10.10.10.111:10809\"" >> /root/.bash_profile
