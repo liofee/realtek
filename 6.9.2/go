@@ -1,0 +1,18 @@
+#!/bin/bash
+# 启动全局代理
+http_proxy=http://10.10.10.111:10809 https_proxy=http://10.10.10.111:10809 /usr/local/sbin/emhttp & 
+echo "export http_proxy=\"http://10.10.10.111:10809\"" >> /root/.bash_profile 
+echo "export https_proxy=\"http://10.10.10.111:10809\"" >> /root/.bash_profile
+
+# 加载i915内核模块
+modprobe i915
+
+# Docker支持IPV6
+mkdir -p /etc/docker
+tee /etc/docker/daemon.json <<-'EOF'
+{
+  "ipv6": true,
+  "fixed-cidr-v6": "fd17::/64",
+  "registry-mirrors": ["https://od3yv52c.mirror.aliyuncs.com"]
+}
+EOF
